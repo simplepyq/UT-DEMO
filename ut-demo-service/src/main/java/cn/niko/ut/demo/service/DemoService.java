@@ -6,21 +6,13 @@
  * If you are not the intended user, you are hereby notified that any use, disclosure, copying, printing, forwarding or
  * dissemination of this property is strictly prohibited. If you have got this file in error, delete it from your system.
  */
-package cn.niko.ut.demo.service.impl;
-
-import org.springframework.stereotype.Service;
-
-import cn.niko.ut.demo.service.CategoryService;
+package cn.niko.ut.demo.service;
 
 /**
  * @author yongqi.pan
- * @since 2022/11/7 15:39
+ * @since 2022/11/7 15:38
  */
-@Service
-public class CategoryServiceImpl implements CategoryService {
+public interface DemoService {
 
-    @Override
-    public String getCategoryByName(String name) {
-        return "历史";
-    }
+    String getStringByName(String name);
 }

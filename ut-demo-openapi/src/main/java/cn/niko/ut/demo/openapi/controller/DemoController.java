@@ -10,14 +10,16 @@ package cn.niko.ut.demo.openapi.controller;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.niko.ut.demo.openapi.controller.pojo.MvcDemoRequest;
 import cn.niko.ut.demo.openapi.controller.pojo.MvcDemoResponse;
-import cn.niko.ut.demo.service.CategoryService;
+import cn.niko.ut.demo.service.DemoService;
 
 /**
  * @author yongqi.pan
@@ -28,12 +30,19 @@ import cn.niko.ut.demo.service.CategoryService;
 public class DemoController {
 
     @Resource
-    private CategoryService categoryService;
+    private DemoService demoService;
 
     @PostMapping("/mvc/demo")
     public MvcDemoResponse mvcDemo(@RequestBody MvcDemoRequest request) {
         MvcDemoResponse response = new MvcDemoResponse();
-        response.setCategory(categoryService.getCategoryByName(request.getName()));
+        response.setCategory(demoService.getStringByName(request.getName()));
+        return response;
+    }
+
+    @GetMapping("/mvc/demo")
+    public MvcDemoResponse mvcDemoGet(@RequestParam String name) {
+        MvcDemoResponse response = new MvcDemoResponse();
+        response.setCategory(demoService.getStringByName(name));
         return response;
     }
 }
